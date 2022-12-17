@@ -48,19 +48,9 @@ entree_repertoire.pack(pady=10)
 # Lier l'événement <FocusIn> à la fonction effacer_texte
 entree_repertoire.bind("<FocusIn>", effacer_texte)
 
-# Créer la fonction de mise à jour du répertoire
-# Créer la fonction de mise à jour du répertoire
-def mettre_a_jour_repertoire():
-    repertoire_actuel = repertoire.get()  # Récupérer le répertoire actuel
-    if os.path.exists(repertoire_actuel):  # Vérifier si le répertoire existe
-        bouton_set["fg"] = "green"  # Changer la couleur du bouton en vert
-    else:
-        bouton_set["fg"] = "red"  # Changer la couleur du bouton en rouge
-    fenetre.update()  # Mettre à jour l'affichage
-
 # Créer le bouton "Set"
 bouton_set = tk.Button(fenetre, text="Set", command=mettre_a_jour_repertoire)
-bouton_set.pack(pady=10)
+bouton_set.pack(side="right", padx=10)
 
 # Créer le bouton de création de dossiers
 bouton_dossiers = tk.Button(fenetre, text="Créer des dossiers", command=creer_dossiers)
