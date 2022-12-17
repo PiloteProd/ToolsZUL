@@ -6,7 +6,7 @@ import random
 # Créer la fenêtre principale
 fenetre = tk.Tk()
 fenetre.title("Répertoire de fichiers")
-fenetre.geometry("330x195")  # Définir la taille de la fenêtre
+fenetre.geometry("328x132")  # Définir la taille de la fenêtre
 # Créer la variable de répertoire
 repertoire = tk.StringVar()
 
