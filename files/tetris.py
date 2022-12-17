@@ -270,3 +270,34 @@ def main():
     speed = INITIAL_SPEED
 
 def update():
+    nonlocal tetromino, next_tetromino, board, score, level, speed
+    move_tetromino(tetromino, board, 0, 1)
+    if collides(tetromino, board):
+        lock_tetromino(tetromino, board)
+        lines_to_clear = get_lines_to_clear(board)
+        if lines_to_clear:
+            clear_lines(board, lines_to_clear)
+            score += len(lines_to_clear) * POINTS_PER_LINE
+            if score // POINTS_PER_LEVEL > level:
+                level += 1
+                speed -= SPEED_INCREASE
+        tetromino = next_tetromino
+        next_tetromino = create_tetromino()
+        if collides(tetromino, board):
+            game_over(canvas)
+            return
+    draw(canvas, tetromino, next_tetromino, board, score)
+    root.after(int(speed), update)
+
+
+def game_over(canvas):
+    canvas.create_text(BOARD_WIDTH * BLOCK_SIZE / 2, BOARD_HEIGHT * BLOCK_SIZE / 2, text="Game Over", font="Arial 30",
+                       fill="red")
+
+
+root.bind("<Key>", lambda event: key_pressed(event, tetromino, board))
+update()
+root.mainloop()
+
+if __name__ == "__main__":
+    main()
