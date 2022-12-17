@@ -87,4 +87,24 @@ def draw_tetromino(canvas, tetromino):
                 elif tetromino.rotation == 3 and (i, j) in [(2, 3), (2, 2), (1, 2), (1, 1)]:
                     canvas.create_rectangle(tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE + BLOCK_SIZE,
                                            fill=tetromino.color)
-
+            elif tetromino.shape == 3:
+                if tetromino.rotation == 0 and (i, j) in [(1, 1), (2, 1), (3, 1), (3, 2)]:
+                    canvas.create_rectangle(tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE,
+                                           tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE + BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE + BLOCK_SIZE,
+                                           fill=tetromino.color)
+                elif tetromino.rotation == 1 and (i, j) in [(2, 1), (2, 2), (2, 3), (1, 3)]:
+                    canvas.create_rectangle(tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE,
+                                           tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE + BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE + BLOCK_SIZE,
+                                           fill=tetromino.color)
+                elif tetromino.rotation == 2 and (i, j) in [(1, 2), (2, 2), (3, 2), (1, 1)]:
+                    canvas.create_rectangle(tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE,
+                                           tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE + BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE + BLOCK_SIZE,
+                                           fill=tetromino.color)
+                elif tetromino.rotation == 3 and (i, j) in [(2, 3), (2, 2), (2, 1), (3, 1)]:
+                    canvas.create_rectangle(tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE,
+                                           tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE + BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE + BLOCK_SIZE,
+                                           fill=tetromino.color)
+            elif tetromino.shape == 4:
+                if tetromino.rotation == 0 and (i, j) in [(1, 2), (2, 2), (2, 1), (3, 1)]:
+                    canvas.create_rectangle(tetromino.x * BLOCK_SIZE + j * BLOCK_SIZE, tetromino.y * BLOCK_SIZE + i * BLOCK_SIZE + BLOCK_SIZE,
+                                           fill=tetromino.color)
