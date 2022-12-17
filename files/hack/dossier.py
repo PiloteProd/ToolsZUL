@@ -41,17 +41,20 @@ def effacer_texte(event):
 texte_entree = tk.StringVar()
 texte_entree.set("Entrez le répertoire de fichier ici")
 
+# Créer un cadre pour l'entrée de texte et le bouton "Set"
+cadre_entree_set = tk.Frame(fenetre)
+cadre_entree_set.pack(pady=10)
 # Créer l'entrée de texte pour le répertoire
-entree_repertoire = tk.Entry(fenetre, textvariable=texte_entree, font=("Arial", 10), width=27)
-entree_repertoire.pack(pady=10)
+entree_repertoire = tk.Entry(cadre_entree_set, textvariable=texte_entree, font=("Arial", 10), width=27)
+entree_repertoire.pack(side="left")
 
 # Lier l'événement <FocusIn> à la fonction effacer_texte
 entree_repertoire.bind("<FocusIn>", effacer_texte)
 
-# Créer le bouton "Set"
-bouton_set = tk.Button(fenetre, text="Set", command=mettre_a_jour_repertoire)
-bouton_set.pack(side="right", padx=10)
 
+# Créer le bouton "Set" et le placer dans le cadre à droite de l'entrée de texte
+bouton_set = tk.Button(cadre_entree_set, text="Set", command=mettre_a_jour_repertoire)
+bouton_set.pack(side="left", padx=10)
 # Créer le bouton de création de dossiers
 bouton_dossiers = tk.Button(fenetre, text="Créer des dossiers", command=creer_dossiers)
 bouton_dossiers.pack(pady=10)
