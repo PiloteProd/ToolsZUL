@@ -27,5 +27,5 @@ if check_key(key):
 else:
   # Si la clé est invalide, affiche un message d'erreur et quitte l'application
   print("Clé de licence invalide. Veuillez vérifier votre clé de licence et réessayer.")
-  time.sleep(455468)
+  time.sleep(10)
 

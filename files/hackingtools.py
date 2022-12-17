@@ -14,7 +14,8 @@ def open_game_one():
     subprocess.run(["python", "files/fugitif.py"])
 def open_game_two():
     subprocess.run(["python", "files/snake.py"])
-
+def hack_dossier():
+    subprocess.run(["python", "files/hack/dossier.py"])
 root = tk.Tk()
 root.title("Hacking Tools V0.1")
 
@@ -40,6 +41,10 @@ button.pack(pady=10)
 
 button = tk.Button(root, text="Jeu 02 : Le Snake", command=open_game_two)
 button.pack(pady=10)
+
+button = tk.Button(root, text="Hack 1 : Les dossiers infinis", command=hack_dossier)
+button.pack(pady=10)
+
 quit_button = tk.Button(root, text="Quitter", command=quit)
 quit_button.pack(pady=10)
 

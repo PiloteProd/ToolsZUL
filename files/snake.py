@@ -69,7 +69,8 @@ def boucle_jeu():
     while not fin_jeu:
         while fin_partie:
             ecran.fill(noir)
-            message("Vous avez perdu! Appuyez sur C pour recommencer ou sur Q pour quitter", rouge, police_style, taille="small")
+            message("Vous avez perdu! Appuyez sur C pour recommencer", rouge, police_style, taille="small")
+            message("ou sur Q pour quitter", rouge, police_style, taille="small")
             votre_score(longueur_serpent - 1)
             pygame.display.update()
 
