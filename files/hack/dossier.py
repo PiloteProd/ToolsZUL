@@ -2,25 +2,17 @@ import tkinter as tk
 import tkinter.simpledialog
 import os
 import random
-import shutil
 
-# Créer la fonction de copie du fichier
-def copier_fichier(repertoire_actuel, nombre_dossiers):
-    # Récupérer le chemin du fichier à copier
-    chemin_fichier = "files/data/data.txt"
-    # Vérifier si le fichier existe
-    if os.path.exists(chemin_fichier):
-        # Parcourir tous les dossiers créés
-        for i in range(nombre_dossiers):
-            # Générer le nom du dossier
-            nom_dossier = "hacked " + str(random.randint(0, 100000000000000000000000000000))
-            # Générer le chemin du dossier
-            chemin_dossier = os.path.join(repertoire_actuel, nom_dossier)
-            # Copier le fichier dans le dossier
-            shutil.copy(chemin_fichier, chemin_dossier)
-    else:
-        # Afficher un message d'erreur
-        tk.messagebox.showerror("Erreur", "Le fichier {} n'existe pas.".format(chemin_fichier))
+# Créer la fenêtre principale
+fenetre = tk.Tk()
+fenetre.title("Répertoire de fichiers")
+fenetre.geometry("330x195")  # Définir la taille de la fenêtre
+# Créer la variable de répertoire
+repertoire = tk.StringVar()
+
+# Créer la fonction de mise à jour du répertoire
+def mettre_a_jour_repertoire():
+    repertoire.set(entree_repertoire.get())
 
 # Créer la fonction de création de dossiers
 def creer_dossiers():
@@ -28,35 +20,43 @@ def creer_dossiers():
     repertoire_actuel = repertoire.get()
 
     # Demander à l'utilisateur de saisir un nombre de dossiers à créer en utilisant une boîte de dialogue tkinter
-    nombre_dossiers = tk.simpledialog.askinteger("Nombre de dossiers", "Combien de dossiers et fichiers (change le texte dans /data/data.txt) souhaitez-vous créer?", parent=fenetre, minvalue=1)
+    nombre_dossiers = tk.simpledialog.askinteger("Nombre de dossiers", "Combien de dossiers souhaitez-vous créer?", parent=fenetre, minvalue=1)
 
     # Vérifier si l'utilisateur a saisi un nombre valide
     if nombre_dossiers is not None:
         # Créer les dossiers
         for i in range(nombre_dossiers):
             # Créer un dossier de test avec un nom aléatoire
-            nom_dossier = "TEST " + str(random.randint(0, 999999999999999))
+            nom_dossier = "HACKED " + str(random.randint(0, 10000000000))
             os.mkdir(os.path.join(repertoire_actuel, nom_dossier))
-        # Copier le fichier dans tous les dossiers créés
-        copier_fichier(repertoire_actuel, nombre_dossiers)
     else:
         # Afficher un message d'erreur
         tk.messagebox.showerror("Erreur", "Vous n'avez pas saisi de nombre valide.")
 
-# Créer la fenêtre principale
-fenetre = tk.Tk()
-fenetre.title("Répertoire de fichiers")
-fenetre.geometry("320x165")  # Définir la taille de la fenêtre
+def effacer_texte(event):
+    # Réinitialiser le texte de l'entrée de texte
+    texte_entree.set("")
 
-# Créer la variable de répertoire
-repertoire = tk.StringVar()
+# Créer la variable de texte pour l'entrée de texte
+texte_entree = tk.StringVar()
+texte_entree.set("Entrez le répertoire de fichier ici")
+
+# Créer l'entrée de texte pour le répertoire
+entree_repertoire = tk.Entry(fenetre, textvariable=texte_entree, font=("Arial", 10), width=27)
+entree_repertoire.pack(pady=10)
+
+# Lier l'événement <FocusIn> à la fonction effacer_texte
+entree_repertoire.bind("<FocusIn>", effacer_texte)
 
 # Créer la fonction de mise à jour du répertoire
+# Créer la fonction de mise à jour du répertoire
 def mettre_a_jour_repertoire():
-    repertoire.set(entree_repertoire.get())
-# Créer l'entrée de texte pour le répertoire
-entree_repertoire = tk.Entry(fenetre, textvariable=repertoire)
-entree_repertoire.pack(pady=10)
+    repertoire_actuel = repertoire.get()  # Récupérer le répertoire actuel
+    if os.path.exists(repertoire_actuel):  # Vérifier si le répertoire existe
+        bouton_set["fg"] = "green"  # Changer la couleur du bouton en vert
+    else:
+        bouton_set["fg"] = "red"  # Changer la couleur du bouton en rouge
+    fenetre.update()  # Mettre à jour l'affichage
 
 # Créer le bouton "Set"
 bouton_set = tk.Button(fenetre, text="Set", command=mettre_a_jour_repertoire)
