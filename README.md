@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm PiloteProd</h1>
-<h3 align="center">I'm using IA form so project :)</h3>
+<h3 align="center">I'm using IA for some project :)</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=piloteprod&label=Profile%20views&color=0e75b6&style=flat" alt="piloteprod" /> </p>
 
